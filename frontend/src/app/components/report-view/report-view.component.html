@@ -1,0 +1,41 @@
+<div class="panel">
+  @if (run(); as r) {
+    <div class="panel-header">
+      <div>
+        <div class="symbol">{{ r.symbol }}</div>
+        <div class="meta mono">
+          <span class="status status-{{ r.status }}">{{ r.status }}</span>
+          <span class="faint">·</span>
+          <span class="faint">{{ r.created_at | date:'short' }}</span>
+        </div>
+      </div>
+      @if (r.final_report) {
+        <button class="download" (click)="download()">↓ Markdown</button>
+      }
+    </div>
+
+    @if (r.status === 'running' || r.status === 'pending') {
+      <div class="composing">
+        <div class="composing-bar"></div>
+        <p>Agents are gathering data. The brief will appear here when the report compiler finishes.</p>
+      </div>
+    }
+
+    @if (r.status === 'failed') {
+      <div class="failure">
+        <div class="eyebrow">Run failed</div>
+        <pre>{{ r.error }}</pre>
+      </div>
+    }
+
+    @if (reportHtml()) {
+      <article class="report" [innerHTML]="reportHtml()"></article>
+    }
+  } @else {
+    <div class="placeholder">
+      <div class="placeholder-mark">M⋅M</div>
+      <h2>MarketMind</h2>
+      <p>A multi-agent research desk. Submit a ticker to dispatch the news, fundamentals, and technical agents in parallel — they hand off to the compiler, which writes the brief.</p>
+    </div>
+  }
+</div>
