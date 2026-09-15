@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: marketmind-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: marketmind
+      POSTGRES_PASSWORD: marketmind
+      POSTGRES_DB: marketmind
+    ports:
+      - "5432:5432"
+    volumes:
+      - marketmind_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marketmind"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  marketmind_pgdata:
