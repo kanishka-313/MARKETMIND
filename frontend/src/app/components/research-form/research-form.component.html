@@ -1,0 +1,29 @@
+<div class="form-card">
+  <label class="eyebrow">Ticker</label>
+  <div class="row">
+    <input
+      type="text"
+      [(ngModel)]="symbol"
+      (keydown.enter)="submit()"
+      placeholder="AAPL"
+      maxlength="16"
+      autocomplete="off"
+      spellcheck="false"
+      [disabled]="submitting()"
+    />
+    <button (click)="submit()" [disabled]="submitting()">
+      {{ submitting() ? 'Dispatching…' : 'Run analysis' }}
+    </button>
+  </div>
+
+  @if (error()) {
+    <div class="error">{{ error() }}</div>
+  }
+
+  <div class="samples">
+    <span class="faint">Try:</span>
+    @for (s of samples; track s) {
+      <button class="chip" (click)="pick(s)">{{ s }}</button>
+    }
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="shell">
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">M⋅M</span>
+      <span class="brand-name">MarketMind</span>
+    </div>
+    <div class="tagline mono">multi-agent research desk</div>
+  </header>
+
+  <!-- Three-pane workspace -->
+  <main class="workspace">
+    <!-- Left rail: form + history -->
+    <aside class="left-rail">
+      <app-research-form (runStarted)="onRunStarted($event)"></app-research-form>
+      <app-history-list
+        [activeId]="activeRunId()"
+        [refreshToken]="refreshToken()"
+        (selected)="onHistoryPicked($event)"
+      ></app-history-list>
+    </aside>
+
+    <!-- Center: report -->
+    <section class="report-area">
+      <app-report-view
+        [runId]="activeRunId()"
+        [refreshToken]="refreshToken()"
+      ></app-report-view>
+    </section>
+
+    <!-- Right rail: live agent pipeline -->
+    <aside class="right-rail">
+      <app-agent-progress
+        [runId]="activeRunId()"
+        (streamEnded)="onStreamEnded()"
+      ></app-agent-progress>
+    </aside>
+  </main>
+
+  <footer class="bottombar mono">
+    <span>Research only. Not financial advice.</span>
+    <span class="faint">v1.0 · {{ activeRunId() ? activeRunId()!.slice(0, 8) : '—' }}</span>
+  </footer>
+</div>

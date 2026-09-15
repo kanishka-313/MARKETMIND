@@ -1,0 +1,68 @@
+/* MarketMind — Design tokens
+   ---------------------------------
+   Palette: deep navy ground, amber accent, parchment text
+   Typography: Fraunces (display serif), Inter (body), JetBrains Mono (data)
+*/
+
+:root {
+  /* Color */
+  --bg:           #0E1419;
+  --bg-elev:      #161D24;
+  --bg-elev-2:    #1E262F;
+  --border:       #283139;
+  --border-soft:  #1E262F;
+  --ink:          #E8E4D9;
+  --ink-dim:      #9AA0A6;
+  --ink-faint:    #5C6470;
+  --accent:       #E8A33D;        /* amber */
+  --accent-dim:   #8B6624;
+  --success:      #6FB07F;
+  --danger:       #D9624A;
+  --warn:         #E8A33D;
+
+  /* Type */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Spacing */
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Scrollbar — quiet */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+
+/* Utility */
+.mono { font-family: var(--font-mono); }
+.dim  { color: var(--ink-dim); }
+.faint { color: var(--ink-faint); }
